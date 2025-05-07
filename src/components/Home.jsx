@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import MainImage from '../../img/Screenshot_2025-05-07_211736-removebg-preview.png'
 import Navbar from "../components/Navbr";
 import { useNavigate } from "react-router-dom";
 
@@ -53,7 +54,7 @@ const HomePage = () => {
             
             {/* Image with mode-sensitive drop-shadow */}
             <img 
-              src="/img/Screenshot_2025-05-07_211736-removebg-preview.png" 
+              src={MainImage} 
               alt="Video chat illustration" 
               className={`max-w-full md:max-w-lg relative z-10 ${
                 darkMode ? 'drop-shadow-lg' : 'drop-shadow-xl'
