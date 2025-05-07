@@ -120,7 +120,7 @@ const RoomPage = () => {
       await peer.setRemoteDescription(from, ans);
       console.log("Call accepted by:", from);
       
-      // Set up track event handler if not already done
+
       const remotePeer = peer.getPeer(from);
       remotePeer.ontrack = ({ streams }) => {
         if (streams[0]) {
@@ -195,15 +195,21 @@ const RoomPage = () => {
     if (myStream) {
       myStream.getTracks().forEach(track => track.stop());
     }
-    
+  
     // Close all peer connections
-    users.forEach(user => {
-      peer.removePeer(user.id);
-    });
-    
-    // Navigate back to lobby
+    if (peer && users.length > 0) {
+      users.forEach(user => {
+        peer.removePeer(user.id);
+      });
+    }
+  
+    setUsers([]); 
+    socket.disconnect();
+  
     navigate("/");
-  }, [myStream, users, navigate]);
+    location.reload()
+  }, [myStream, users, peer, navigate]);
+  
 
   // Toggle layout between grid and spotlight
   const toggleLayout = useCallback(() => {
