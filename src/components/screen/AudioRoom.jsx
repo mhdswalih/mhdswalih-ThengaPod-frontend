@@ -217,6 +217,7 @@ const AudioRoomPage = () => {
 
     // Navigate back to lobby
     navigate("/");
+    location.reload()
   }, [myStream, users, navigate]);
 
   // Format meeting time
